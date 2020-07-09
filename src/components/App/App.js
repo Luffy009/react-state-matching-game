@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   startGame(numTiles) {
-    this.setState(function (state) {
+    this.setState((state) => {
       return {
         playing: true,
         previousTileIndex: null,
@@ -37,6 +37,7 @@ class App extends Component {
         <OptionsPanel
           playing={this.state.playing}
           numTiles={this.state.numTiles}
+          startGame={this.startGame.bind(this)}
         />
         <Board
           numTiles={this.state.numTiles}
