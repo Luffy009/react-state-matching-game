@@ -23,7 +23,8 @@ class App extends Component {
       previousTileIndex: null,
       toBeCleared: null,
       tiles: createTiles(state.numTiles, this.handleTileClicked)
-    }))
+    })
+    )
   }
 
   handleTileClicked(id, color) {
@@ -31,6 +32,7 @@ class App extends Component {
       const tiles = state.tiles
       let toBeCleared = state.toBeCleared
       const selectedTileIndex = indexOfSelected(tiles, id, color)
+      let previousTileIndex = state.previousTileIndex
 
       if (toBeCleared !== null) {
         tiles[selected[toBeCleared[0]]] = false
@@ -42,15 +44,16 @@ class App extends Component {
 
 
       if (previousTileIndex !== null) {
-        previousTile = tiles[previousTileIndex]
-        selectedTile = tiles[selectedTileIndex]
+        let previousTile = tiles[previousTileIndex]
+        let selectedTile = tiles[selectedTileIndex]
 
-        if (previousTile.id != selectedTile.id && previousTile.color === color) {
-          selectedTile.id = true
-          previousTile.id = true
+        if (previousTile.id !== selectedTile.id && previousTile.color === color) {
+          selectedTile = true
+          previousTile = true
           previousTileIndex = null
         } else {
-          toBeCleared = [previousTileIndex = null, selectedTileIndex]
+          toBeCleared = [previousTileIndex, selectedTileIndex]
+          previousTileIndex = null
 
         }
 
@@ -59,9 +62,9 @@ class App extends Component {
       }
 
       return {
-        toBeCleared,
-        tiles,
-        previousTileIndex: state.previousTileIndex
+        toBeCleared: toBeCleared,
+        tiles: tiles,
+        previousTileIndex: previousTileIndex
       }
     })
   }
