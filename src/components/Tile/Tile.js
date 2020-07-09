@@ -3,10 +3,11 @@ import React from 'react'
 import './Tile.css'
 
 const Tile = (props) => {
-  dynamicColor = (props.selected === true || props.matched === true) ? { backgroundColor: props.color } : null
+  const dynamicColor = props.selected || props.matched ? { backgroundColor: props.color } : null
+
   return (
-    <div className='Tile'
-      {props.selected === true || props.matched === true ? <svg /> : null} >
+    <div className='Tile' style={dynamicColor} >
+      {props.selected || props.matched ? <props.svg /> : null}
     </div >
   )
 }
