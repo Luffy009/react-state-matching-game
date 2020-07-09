@@ -27,7 +27,7 @@ class App extends Component {
     )
   }
 
-  handleTileClicked(id, color) {
+  handleTileClicked = (id, color) => {
     this.setState((state) => {
       const tiles = state.tiles
       let toBeCleared = state.toBeCleared
@@ -62,8 +62,8 @@ class App extends Component {
       }
 
       return {
-        toBeCleared: toBeCleared,
-        tiles: tiles,
+        toBeCleared,
+        tiles,
         previousTileIndex: previousTileIndex
       }
     })
