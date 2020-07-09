@@ -48,8 +48,8 @@ class App extends Component {
         let selectedTile = tiles[selectedTileIndex]
 
         if (previousTile.id !== selectedTile.id && previousTile.color === color) {
-          selectedTile = true
-          previousTile = true
+          selectedTile.matched = true
+          previousTile.matched = true
           previousTileIndex = null
         } else {
           toBeCleared = [previousTileIndex, selectedTileIndex]
@@ -64,7 +64,7 @@ class App extends Component {
       return {
         toBeCleared,
         tiles,
-        previousTileIndex: previousTileIndex
+        previousTileIndex
       }
     })
   }
