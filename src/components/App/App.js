@@ -42,7 +42,6 @@ class App extends Component {
 
       tiles[selectedTileIndex].selected = true
 
-
       if (previousTileIndex !== null) {
         let previousTile = tiles[previousTileIndex]
         let selectedTile = tiles[selectedTileIndex]
@@ -54,9 +53,7 @@ class App extends Component {
         } else {
           toBeCleared = [previousTileIndex, selectedTileIndex]
           previousTileIndex = null
-
         }
-
       } else {
         previousTileIndex = selectedTileIndex
       }
@@ -66,6 +63,14 @@ class App extends Component {
         tiles,
         previousTileIndex
       }
+    })
+  }
+
+  handleNumTileChange = (num) => {
+    this.setState({
+      numTiles: num,
+      playing: false,
+      tiles: []
     })
   }
 
@@ -79,6 +84,7 @@ class App extends Component {
           playing={this.state.playing}
           numTiles={this.state.numTiles}
           startGame={this.startGame}
+          handleNumTileChange={this.handleNumTileChange()}
         />
         <Board
           numTiles={this.state.numTiles}
